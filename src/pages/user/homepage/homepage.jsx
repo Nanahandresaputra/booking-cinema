@@ -7,7 +7,7 @@ import movies from "../../../data-dummy/movies";
 
 const Homepage = () => {
   return (
-    <section className="pt-20 lg:pt-32 pb-10 w-screen flex flex-col justify-center items-center">
+    <section className="pt-20 lg:pt-32 pb-10 lg:pb-40 w-screen flex flex-col justify-center items-center">
       <div
         className="w-full max-w-[1536px] space-y-12 md:space-y-20
       ">
