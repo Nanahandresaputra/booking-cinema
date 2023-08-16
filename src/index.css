@@ -6,6 +6,6 @@
 
 @layer base {
   body {
-    @apply h-screen w-screen bg-black;
+    @apply h-full w-full bg-black;
   }
 }

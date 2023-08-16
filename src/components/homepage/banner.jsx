@@ -1,10 +1,9 @@
 /** @format */
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 import { banner1, banner2, banner3 } from "../../assets/banner-img/index";
 
@@ -22,17 +21,16 @@ const Banner = () => {
           clickable: true,
         }}
         navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className='mySwiper w-[800px]'
-      >
+        modules={[Autoplay, Pagination]}
+        className="mySwiper max-w-[400px] md:max-w-[800px] lg:max-w-[1000px]">
         <SwiperSlide>
-          <img src={banner1} className='w-full h-56 lg:h-96' />
+          <img src={banner1} className="w-full h-56 md:h-72 lg:h-80 xl:h-96" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={banner2} className='w-full h-56 lg:h-96' />
+          <img src={banner2} className="w-full h-56 md:h-72 lg:h-80 xl:h-96" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={banner3} className='w-full h-56 lg:h-96' />
+          <img src={banner3} className="w-full h-56 md:h-72 lg:h-80 xl:h-96" />
         </SwiperSlide>
       </Swiper>
     </section>
