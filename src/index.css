@@ -4,8 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+/* @layer base {
   body {
     @apply h-full w-full bg-black;
   }
+} */
+
+html {
+  background: black !important;
 }
