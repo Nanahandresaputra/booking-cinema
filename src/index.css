@@ -13,3 +13,8 @@
 html {
   background: black !important;
 }
+
+.backgroundImage {
+  background-image: url('./assets/phone-banner.jpg') !important;
+  background: rgba(0, 0, 0, 0.178) !important;
+}

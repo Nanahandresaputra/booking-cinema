@@ -14,7 +14,7 @@ function App() {
           <UserRoute />
         </section>
       </Router>
-      <Footer />
+      {/* <Footer /> */}
     </section>
   );
 }
