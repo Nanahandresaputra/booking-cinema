@@ -3,4 +3,5 @@ export const apiConfig = {
   listMovies: "list-movies",
   login: "login",
   register: "register",
+  listStudio: "list-studio",
 };

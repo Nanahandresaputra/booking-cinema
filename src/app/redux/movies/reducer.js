@@ -1,7 +1,8 @@
-import { GET_MOVIES } from "./constant";
+import { GET_MOVIES, GET_STUIDO } from "./constant";
 
 let initialState = {
   listMovies: [],
+  listStudio: {},
 };
 
 const moviesReducer = (state = initialState, action) => {
@@ -11,6 +12,9 @@ const moviesReducer = (state = initialState, action) => {
         ...state,
         listMovies: action.payload,
       };
+
+    case GET_STUIDO:
+      return { ...state, listStudio: action.payload };
 
     default:
       return state;

@@ -1,6 +1,6 @@
 /** @format */
 
-import Footer from "./components/footer/footer";
+// import Footer from "./components/footer/footer";
 import Topbar from "./components/topbar/topbar";
 import { BrowserRouter as Router } from "react-router-dom";
 import UserRoute from "./routes/user-route/userRoute";

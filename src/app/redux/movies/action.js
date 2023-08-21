@@ -1,5 +1,6 @@
-import { listMoviesApi } from "../../api/api";
-import { GET_MOVIES } from "./constant";
+import moment from "moment";
+import { listMoviesApi, listStudioApi } from "../../api/api";
+import { GET_MOVIES, GET_STUIDO } from "./constant";
 
 export const getListMovies = () => {
   return (dispatch) =>
@@ -9,4 +10,31 @@ export const getListMovies = () => {
         payload: res.data.movies,
       })
     );
+};
+
+// export const getStudio = () => {
+//   return (dispatch) => {
+//     listStudioApi().then((res) =>
+//       dispatch({
+//         type: GET_STUIDO,
+//         payload: res.data.result,
+//       })
+//     );
+//   };
+// };
+
+export const getStudioDetail = (studioId) => {
+  return (dispatch) => {
+    let params = {
+      studio: studioId,
+      showTime: "10.00-12.00",
+      date: moment().format("MMM Do YY"),
+    };
+    listStudioApi(params).then((res) =>
+      dispatch({
+        type: GET_STUIDO,
+        payload: res.data,
+      })
+    );
+  };
 };

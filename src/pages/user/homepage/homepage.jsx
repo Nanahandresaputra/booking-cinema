@@ -10,7 +10,7 @@ import { getListMovies } from "../../../app/redux/movies/action";
 import movies from "../../../data-dummy/movies";
 
 const Homepage = () => {
-  const { listMovies } = useSelector((state) => state.movies);
+  // const { listMovies } = useSelector((state) => state.movies);
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
 
@@ -23,8 +23,7 @@ const Homepage = () => {
   return (
     <div
       className="w-full max-w-[1536px] space-y-12 md:space-y-20
-      "
-    >
+      ">
       <Banner />
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputSearch register={register} />

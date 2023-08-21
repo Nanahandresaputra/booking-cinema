@@ -11,7 +11,8 @@ const SeatComp = ({ seat, seatsData, label }) => {
 
   const btnStyles = {
     available: "btn btn-success btn-sm md:btn-md lg:btn-lg",
-    booked: "px-3 h-8 md:px-4 md:h-12 lg:px-6 lg:h-16  text-white bg-gray-300 rounded-lg focus:outline-none inline-flex flex-wrap items-center justify-center gap-2 font-semibold text-sm lg:text-lg",
+    booked:
+      "px-3 h-8 md:px-4 md:h-12 lg:px-6 lg:h-16  text-white bg-gray-300 rounded-lg focus:outline-none inline-flex flex-wrap items-center justify-center gap-2 font-semibold text-sm lg:text-lg",
   };
 
   return (
@@ -21,11 +22,14 @@ const SeatComp = ({ seat, seatsData, label }) => {
         {seat?.map((index, i) => (
           <button
             type="button"
-            className={`text-white ${seatsData.find((data) => data === index) ? btnStyles.booked : btnStyles.available} w-7 md:w-auto`}
+            className={`text-white ${
+              seatsData.find((data) => data === index)
+                ? btnStyles.booked
+                : btnStyles.available
+            } w-7 md:w-auto`}
             key={i}
             onClick={() => handleBooking(index)}
-            disabled={seatsData.find((data) => data === index) ? true : false}
-          >
+            disabled={seatsData.find((data) => data === index) ? true : false}>
             {index}
           </button>
         ))}
