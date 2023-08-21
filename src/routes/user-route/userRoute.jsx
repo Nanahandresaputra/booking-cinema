@@ -10,7 +10,7 @@ const UserRoute = () => {
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/detail-film/:id" element={<DetailFIlm />} />
-      <Route path="/detail-film/:id/seat" element={<Seat />} />
+      <Route path="/detail-film/:id/seat/:id" element={<Seat />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
     </Routes>
