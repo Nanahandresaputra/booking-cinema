@@ -28,7 +28,8 @@ export const getStudioDetail = (studioId) => {
     let params = {
       studio: studioId,
       showTime: "10.00-12.00",
-      date: moment().format("MMM Do YY"),
+      // date: "2023/08/20",
+      date: moment().format("YYYY/MM/DD"),
     };
     listStudioApi(params).then((res) =>
       dispatch({

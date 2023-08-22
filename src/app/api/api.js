@@ -1,8 +1,17 @@
 import axios from "axios";
 import { apiConfig } from "../../config/config";
 
+let token = sessionStorage.getItem("auth");
+
 export const listMoviesApi = async () => {
-  const movies = await axios.get(`${apiConfig.baseUl}/${apiConfig.listMovies}`);
+  const movies = await axios.get(
+    `${apiConfig.baseUl}/${apiConfig.listMovies}`,
+    {
+      headers: {
+        access_token: token,
+      },
+    }
+  );
   return movies;
 };
 
@@ -11,8 +20,7 @@ export const listStudioApi = async (params) => {
     `${apiConfig.baseUl}/${apiConfig.listStudio}`,
     {
       headers: {
-        access_token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJuYW5hQGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY5MjM0OTA5NX0.YvXbiciCYgOT6lh07ZNzWO63UOvedx8z_2ii4-xuuRM",
+        access_token: token,
       },
       params,
     }
@@ -20,7 +28,18 @@ export const listStudioApi = async (params) => {
   return studio;
 };
 
-export const authLoginApi = async () => {
-  const auth = await axios.get(`${apiConfig.baseUl}/${apiConfig.authLogin}`);
+export const authLoginApi = async ({ email, password }) => {
+  const auth = await axios.post(`${apiConfig.baseUl}/${apiConfig.login}`, {
+    email,
+    password,
+  });
   return auth;
+};
+
+export const registerApi = async ({ email, password, username }) => {
+  const register = await axios.post(
+    `${apiConfig.baseUl}/${apiConfig.register}`,
+    { username, email, password }
+  );
+  return register;
 };

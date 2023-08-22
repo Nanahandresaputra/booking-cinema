@@ -7,10 +7,10 @@ import InputSearch from "../../../components/input-form/inputSearch";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { getListMovies } from "../../../app/redux/movies/action";
-import movies from "../../../data-dummy/movies";
+// import movies from "../../../data-dummy/movies";
 
 const Homepage = () => {
-  // const { listMovies } = useSelector((state) => state.movies);
+  const { listMovies } = useSelector((state) => state.movies);
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
 
@@ -29,13 +29,9 @@ const Homepage = () => {
         <InputSearch register={register} />
       </form>
       <div className="flex flex-wrap gap-3 md:gap-6 lg:gap-8 lg:gap-y-20 lg:mx-10 xl:mx-0  justify-center">
-        {movies.map((index, i) => (
+        {listMovies.map((index, i) => (
           <CardFilm key={i} movies={index} />
         ))}
-
-        {/* {listMovies.map((index, i) => (
-          <CardFilm key={i} movies={index} />
-        ))} */}
       </div>
     </div>
   );

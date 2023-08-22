@@ -18,7 +18,7 @@ const Accordion = ({ studioName, movieId, time }) => {
         <div className="flex space-x-6 items-center">
           <img src={studio} alt="logo studio" className="h-20 md:h-24" />
           <p className="text-white font-semibold text-lg md:text-xl">
-            Studio {studioName}
+            {studioName}
           </p>
         </div>
         {isOpen === false ? (

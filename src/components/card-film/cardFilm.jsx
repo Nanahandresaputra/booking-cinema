@@ -14,8 +14,8 @@ const CardFilm = ({ movies }) => {
       <Link to={`detail-film/${movies.id}`}>
         <figure className="rounded-xl ">
           <img
-            // src={`data:image/jpeg;base64,${movies.image}`}
-            src={movies.image}
+            src={`data:image/jpeg;base64,${movies.image}`}
+            // src={movies.image}
             alt="Shoes"
             className="w-full h-64 lg:h-80 2xl:h-96 object-cover"
           />
@@ -33,8 +33,8 @@ const CardFilm = ({ movies }) => {
         <button
           type="button"
           className="btn btn-primary"
-          // onClick={() => toDetail(movies.StudioId)}>
-          onClick={() => toDetail(movies.id)}>
+          onClick={() => toDetail(movies.StudioId)}>
+          {/* // onClick={() => toDetail(movies.id)}> */}
           Beli Tiket
         </button>
       </div>

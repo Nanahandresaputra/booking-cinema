@@ -1,11 +1,23 @@
 /** @format */
 
 import { FiMenu } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { FaUserCircle } from "react-icons/fa";
 
 const Topbar = () => {
+  let role = sessionStorage.getItem("role");
+  let token = sessionStorage.getItem("auth");
+
+  const naviate = useNavigate();
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("auth");
+    sessionStorage.removeItem("role");
+    naviate("/login");
+    window.location.reload(false);
+  };
+
   return (
     <section className="fixed top-0 z-20 navbar bg-red-500 flex justify-center items-center">
       <div className="flex w-full px-5  md:w-10/12 max-w-[1500px] text-white text-xl">
@@ -23,11 +35,14 @@ const Topbar = () => {
             <li>
               <Link>List Film</Link>
             </li>
-            <li>
+            <li className={token ? "hidden" : "block"}>
               <Link to="login">Login</Link>
             </li>
-            <li>
+            <li className={token ? "hidden" : "block"}>
               <Link to="register">Register</Link>
+            </li>
+            <li className={token ? "block" : "hidden"} onClick={handleLogout}>
+              Logout
             </li>
           </ul>
         </details>
@@ -39,18 +54,23 @@ const Topbar = () => {
             onClick={() => window.scroll({ top: 0 })}>
             Home
           </Link>
-          <Link className="btn btn-ghost normal-case text-xl">List Film</Link>
+          <Link className="btn btn-ghost normal-case text-xl">
+            {role === "Admin" ? "Dashboard" : "List Film"}
+          </Link>
 
           <details className="dropdown">
             <summary className="m-1 btn btn-ghost">
               <FaUserCircle className="text-3xl" />
             </summary>
             <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-40 text-black text-lg">
-              <li>
+              <li className={token ? "hidden" : "block"}>
                 <Link to="login">Login</Link>
               </li>
-              <li>
+              <li className={token ? "hidden" : "block"}>
                 <Link to="register">Register</Link>
+              </li>
+              <li className={token ? "block" : "hidden"} onClick={handleLogout}>
+                Logout
               </li>
             </ul>
           </details>
