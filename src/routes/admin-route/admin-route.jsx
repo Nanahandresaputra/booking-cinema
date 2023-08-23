@@ -11,14 +11,35 @@ const AdminRoute = () => {
       <Route
         path="/admin"
         element={
-          // <PrivateAdmin>
-          <Dashboard />
-          // {/* </PrivateAdmin> */}
+          <PrivateAdmin>
+            <Dashboard />
+          </PrivateAdmin>
         }
       />
-      <Route path="/admin/add-data" element={<AddData />} />
-      <Route path="/admin/detail-film" element={<DetailAdmin />} />
-      <Route path="/admin/detail-film/update-data" element={<UpdateData />} />
+      <Route
+        path="/admin/add-data"
+        element={
+          <PrivateAdmin>
+            <AddData />
+          </PrivateAdmin>
+        }
+      />
+      <Route
+        path="/admin/detail-film"
+        element={
+          <PrivateAdmin>
+            <DetailAdmin />
+          </PrivateAdmin>
+        }
+      />
+      <Route
+        path="/admin/detail-film/update-data"
+        element={
+          <PrivateAdmin>
+            <UpdateData />
+          </PrivateAdmin>
+        }
+      />
     </Routes>
   );
 };

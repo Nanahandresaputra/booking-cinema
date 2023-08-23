@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SeatComp from "../../../components/seat-component/seatComp";
 import {
   seatA,
@@ -12,9 +12,9 @@ import {
   seatI,
   seatJ,
 } from "../../../data-dummy/seat";
+import { useEffect } from "react";
+import { addBookingMovie } from "../../../app/redux/movies/action";
 const Seat = () => {
-  const { seatsData } = useSelector((state) => state.seat);
-
   let seatStudio1 = [
     {
       label: "A",
@@ -60,6 +60,28 @@ const Seat = () => {
       seat: seatJ,
     },
   ];
+
+  const { seatsData } = useSelector((state) => state.seat);
+  // const { getBooking } = useSelector((state) => state.movies);
+  // const { timeInfo, dateMovie, listStudio } = useSelector(
+  //   (state) => state.movies
+  // );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(addBookingMovie());
+  }, [dispatch]);
+
+  const handleBookings = () => {
+    // console.log({
+    //   movie: listStudio?.result?.Movies[0].title,
+    //   showTime: timeInfo,
+    //   date: dateMovie,
+    //   studio: id,
+    //   seat: seatsData,
+    // });
+    // console.log(getBooking);
+  };
 
   return (
     <section className="flex flex-col space-y-10 w-full max-w-[1563px]">
@@ -109,11 +131,16 @@ const Seat = () => {
         </div>
       </div>
 
-      <div className="flex justify-center w-full">
-        <div className="flex justify-between items-center border px-3 bg-gray-900 rounded-lg py-3 w-9/12 text-white text-sm md:text-lg">
-          <p>Jumlah: {seatsData.length}</p>
-          <p>Harga: Rp. {parseInt(seatsData.length) * 20000}</p>
+      <div className="flex flex-col items-center w-full space-y-7">
+        <div className="flex justify-center items-center border px-3 bg-gray-900 rounded-lg py-3 w-9/12 text-white text-sm md:text-lg">
+          <p>Nomor kursi: {seatsData}</p>
         </div>
+        <button
+          type="button"
+          className="btn btn-success text-white w-9/12"
+          onClick={handleBookings}>
+          Booking Tiket
+        </button>
       </div>
     </section>
   );

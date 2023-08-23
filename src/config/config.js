@@ -4,4 +4,5 @@ export const apiConfig = {
   login: "user/login",
   register: "user/register",
   listStudio: "client/list-studio",
+  booking: "",
 };

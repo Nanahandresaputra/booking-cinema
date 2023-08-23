@@ -6,6 +6,8 @@ const PrivateAdmin = ({ children }) => {
 
   if (auth && role === "Admin") {
     return children;
+  } else if (auth && role === "client") {
+    return <Navigate to="/" />;
   }
   return <Navigate to="/login" />;
 };

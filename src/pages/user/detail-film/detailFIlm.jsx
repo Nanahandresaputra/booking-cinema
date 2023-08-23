@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import {
+  getDate,
   getListMovies,
   getStudioDetail,
+  getStudiooId,
 } from "../../../app/redux/movies/action";
+import moment from "moment";
 
 const DetailFIlm = () => {
   const { listStudio, listMovies } = useSelector((state) => state.movies);
@@ -14,15 +17,21 @@ const DetailFIlm = () => {
 
   const { id } = useParams();
   useEffect(() => {
-    dispatch(getStudioDetail(id));
+    dispatch(getStudioDetail({ id }));
     dispatch(getListMovies());
+    dispatch(getStudiooId(id));
   }, [dispatch, id]);
 
-  let dataId = listMovies.find(
-    (data) => data?.title === listStudio?.result?.Movies[0].title
+  let dataId = listMovies?.find(
+    (data) => data?.title === listStudio.result?.Movies[0].title
   );
-  // console.log(dataId.title);
 
+  const { dateMovie } = useSelector((state) => state.movies);
+
+  const handleClick = (idx) => {
+    dispatch(getDate(idx));
+  };
+  // console.log(listStudio);
   return (
     <section className="mx-5 space-y-8 lg:space-y-12 max-w-[1536px] md:w-10/12 lg:w-9/12">
       <div className="flex flex-col items-center justify-around lg:justify-start lg:space-x-12 lg:flex-row">
@@ -58,9 +67,21 @@ const DetailFIlm = () => {
       <div className="space-y-5 lg:space-y-8">
         <div className=" border-b flex items-center p-3 space-x-5">
           <img src={popcorn} alt="popcorn" className="h-8 md:h-9" />
-          <h1 className="text-white font-semibold text-lg md:text-xl">
-            Tiket Available, {listStudio?.date}
-          </h1>
+          <div className="flex space-x-2 items-center">
+            <h1 className="text-white font-semibold text-lg md:text-xl">
+              Tiket Available,
+            </h1>
+            {listStudio.date?.map((index, i) => (
+              <p
+                key={i}
+                className={`text-white font-semibold text-lg p-2 rounded-lg  md:text-xl ${
+                  dateMovie === index ? "bg-red-400" : "bg-transparent"
+                }`}
+                onClick={() => handleClick(index)}>
+                {index === moment().format("YYYY/MM/DD") ? "today" : index}
+              </p>
+            ))}
+          </div>
         </div>
         <Accordion
           studioName={listStudio?.result?.name}

@@ -1,9 +1,8 @@
 import axios from "axios";
 import { apiConfig } from "../../config/config";
 
-let token = sessionStorage.getItem("auth");
-
 export const listMoviesApi = async () => {
+  let token = sessionStorage.getItem("auth");
   const movies = await axios.get(
     `${apiConfig.baseUl}/${apiConfig.listMovies}`,
     {
@@ -16,6 +15,7 @@ export const listMoviesApi = async () => {
 };
 
 export const listStudioApi = async (params) => {
+  let token = sessionStorage.getItem("auth");
   const studio = await axios.get(
     `${apiConfig.baseUl}/${apiConfig.listStudio}`,
     {
@@ -29,11 +29,18 @@ export const listStudioApi = async (params) => {
 };
 
 export const authLoginApi = async ({ email, password }) => {
-  const auth = await axios.post(`${apiConfig.baseUl}/${apiConfig.login}`, {
-    email,
-    password,
-  });
-  return auth;
+  // const auth = await axios.post(`${apiConfig.baseUl}/${apiConfig.login}`, {
+  //   email,
+  //   password,
+  // });
+  // return auth;
+  return axios
+    .post(`${apiConfig.baseUl}/${apiConfig.login}`, {
+      email,
+      password,
+    })
+    .then((res) => res)
+    .catch((err) => err);
 };
 
 export const registerApi = async ({ email, password, username }) => {

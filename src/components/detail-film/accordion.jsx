@@ -2,12 +2,21 @@ import { useState } from "react";
 import studio from "../../assets/studio.png";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getShowTime } from "../../app/redux/movies/action";
 
 const Accordion = ({ studioName, movieId, time }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => {
     isOpen === false ? setIsOpen(true) : setIsOpen(false);
+  };
+
+  const dispatch = useDispatch();
+
+  const handleTime = (timeMovie) => {
+    dispatch(getShowTime(timeMovie));
+    navigate(`seat/${movieId}`);
   };
 
   return (
@@ -29,11 +38,14 @@ const Accordion = ({ studioName, movieId, time }) => {
       </div>
       {isOpen === false ? null : (
         <div className="flex space-x-5 ps-5 flex-wrap py-10">
-          <button
-            className="btn rounded-full btn-error text-white btn-sm md:btn-md"
-            onClick={() => navigate(`seat/${movieId}`)}>
-            {time}
-          </button>
+          {time?.map((index, i) => (
+            <button
+              key={i}
+              className="btn rounded-full btn-error text-white btn-sm md:btn-md"
+              onClick={() => handleTime(index)}>
+              {index}
+            </button>
+          ))}
         </div>
       )}
     </section>

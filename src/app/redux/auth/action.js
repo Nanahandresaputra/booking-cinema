@@ -1,14 +1,10 @@
-import { authLoginApi, registerApi } from "../../api/api";
+import { registerApi } from "../../api/api";
 import { AUTH_LOGIN, AUTH_REGISTER } from "./constant";
 
-export const authAction = ({ email, password }) => {
-  return (dispatch) => {
-    authLoginApi({ email, password }).then((res) =>
-      dispatch({
-        type: AUTH_LOGIN,
-        payload: res.data,
-      })
-    );
+export const authAction = (data) => {
+  return {
+    type: AUTH_LOGIN,
+    payload: data,
   };
 };
 

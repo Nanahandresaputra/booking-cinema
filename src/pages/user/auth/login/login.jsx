@@ -3,12 +3,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputText from "../../../../components/input-form/inputText";
 import phoneBanner from "../../../../assets/phone-banner.jpg";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { authAction } from "../../../../app/redux/auth/action";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { authLoginApi } from "../../../../app/api/api";
 const Login = () => {
-  const { login } = useSelector((state) => state.auth);
   const validationSchema = yup.object().shape({
     email: yup
       .string()
@@ -27,30 +26,24 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  let token = sessionStorage.getItem("auth");
-
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   login;
-  // }, [login]);
-
-  const onsubmit = (data) => {
-    console.log(data);
-    if (!token || login.access_token === undefined) {
+  const onsubmit = async (formData) => {
+    const { data } = await authLoginApi(formData);
+    console.log(!data ? "salah" : data.access_token);
+    if (!data) {
       setError("password", {
         type: "invalidCredential",
-        message: "Invalid username/password",
+        message: "Invalid email/password",
       });
+    } else {
+      const { role, access_token } = data;
+      dispatch(authAction({ role, access_token }));
+      sessionStorage.setItem("auth", access_token);
+      sessionStorage.setItem("role", role);
+      role === "Admin" ? navigate("/admin") : navigate("/");
     }
-    dispatch(authAction(data));
-
-    sessionStorage.setItem("auth", login.access_token);
-    sessionStorage.setItem("role", login.role);
-    login.role === "Admin" ? navigate("/admin") : navigate("/");
   };
-
-  console.log(login.access_token);
 
   return (
     <section className="w-screen lg:border grid grid-cols-1 items-center lg:grid-cols-2 lg:w-[900px] h-[63vh] md:h-[75vh] lg:h-[45vh] max-w-[1536px] mt-5 lg:my-0 2xl:my-10">
