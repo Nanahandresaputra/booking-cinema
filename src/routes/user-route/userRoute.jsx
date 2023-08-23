@@ -21,9 +21,9 @@ const UserRoute = () => {
       <Route
         path="/detail-film/:id/seat/:id"
         element={
-          <PrivateRouterUser>
-            <Seat />
-          </PrivateRouterUser>
+          // <PrivateRouterUser>
+          <Seat />
+          // </PrivateRouterUser>
         }
       />
       <Route path="/login" element={<Login />} />

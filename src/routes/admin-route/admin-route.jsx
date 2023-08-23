@@ -11,9 +11,9 @@ const AdminRoute = () => {
       <Route
         path="/admin"
         element={
-          <PrivateAdmin>
-            <Dashboard />
-          </PrivateAdmin>
+          // <PrivateAdmin>
+          <Dashboard />
+          // {/* </PrivateAdmin> */}
         }
       />
       <Route path="/admin/add-data" element={<AddData />} />

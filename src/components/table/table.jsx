@@ -23,22 +23,13 @@ const Table = () => {
                
               </td> */}
               <td className=" flex items-center space-x-3 ">
-                <img
-                  src={index.image}
-                  alt={index.title}
-                  className="h-16 md:h-20 lg:h-32"
-                />
+                <img src={index.image} alt={index.title} className="h-16 md:h-20 lg:h-32" />
                 <span className="truncate w-20 md:w-auto">{index.title}</span>
               </td>
               <td>Studio XXI</td>
-              <td className="space-y-3 md:space-x-4 lg:space-x-6">
-                <button
-                  className="btn btn-info  btn-xs md:btn-sm text-white"
-                  onClick={() => navigate("detail-film")}>
+              <td>
+                <button className="btn btn-info  btn-xs md:btn-sm text-white" onClick={() => navigate("detail-film")}>
                   Detail
-                </button>
-                <button className="btn btn-error btn-xs md:btn-sm  text-white">
-                  Delete
                 </button>
               </td>
             </tr>

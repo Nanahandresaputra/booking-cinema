@@ -11,7 +11,7 @@ const InputText = ({ nama, register, errMessage, errStyle, type }) => {
           border border-white bg-transparent text-white w-full"
         {...register(nama)}
       />
-      <span className={errStyle}>{errMessage}</span>
+      <span className={errStyle || ""}>{errMessage || ""}</span>
     </label>
   );
 };

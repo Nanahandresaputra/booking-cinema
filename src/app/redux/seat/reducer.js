@@ -10,8 +10,7 @@ export const seatReducer = (state = initialState, action) => {
     case ADD_SEAT:
       return {
         ...state,
-        seatsData:
-          index > -1 ? state.seatsData : [...state.seatsData, action.payload],
+        seatsData: index > -1 ? state.seatsData.filter((item) => item !== action.payload) : [...state.seatsData, action.payload],
       };
 
     default:
