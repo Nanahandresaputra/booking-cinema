@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import InputText from "../../../components/input-form/inputText";
 import InputTextArea from "../../../components/input-form/inputTextArea";
 import InputFileImage from "../../../components/input-form/inputFileImage";
+import { useState } from "react";
 const UpdateData = () => {
   const validationSchema = yup.object().shape({
     title: yup.string().required("Masukan judul film"),
@@ -29,8 +30,22 @@ const UpdateData = () => {
     handleSubmit,
   } = useForm({ resolver: yupResolver(validationSchema) });
 
+  const [base64, setBase64] = useState("");
+
+  const convertToBase64 = (selectedFile) => {
+    const reader = new FileReader();
+
+    reader.readAsDataURL(selectedFile);
+
+    reader.onload = () => {
+      // console.log("called: ", reader);
+      setBase64(reader.result);
+    };
+  };
+
   const onsubmit = (data) => {
-    console.log(data);
+    convertToBase64(data.image[0]);
+    console.log(base64);
   };
 
   return (
