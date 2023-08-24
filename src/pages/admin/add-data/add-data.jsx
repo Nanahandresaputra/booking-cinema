@@ -53,6 +53,7 @@ const AddData = () => {
         director,
         image: reader.result.replace(/^data:image\/[a-z]+;base64,/, ""),
       });
+      alert("Berhasil Menambahkan Data");
       navigate("/admin");
     };
   };

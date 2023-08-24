@@ -59,7 +59,9 @@ const UpdateData = () => {
         id,
         image: reader.result.replace(/^data:image\/[a-z]+;base64,/, ""),
       });
+      alert("Berhasil update data");
       navigate("/admin");
+      window.location.reload(true);
     };
   };
 
