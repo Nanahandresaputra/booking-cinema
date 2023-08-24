@@ -77,7 +77,7 @@ const DetailFIlm = () => {
             {listStudio.date?.map((index, i) => (
               <p
                 key={i}
-                className={`text-white font-semibold text-lg p-2 rounded-lg  md:text-xl ${
+                className={`text-white font-semibold text-lg p-2 rounded-lg cursor-pointer  md:text-xl ${
                   dateMovie === index ? "bg-red-400" : "bg-transparent"
                 }`}
                 onClick={() => handleClick(index)}>

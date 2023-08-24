@@ -5,6 +5,7 @@ import InputText from "../../../../components/input-form/inputText";
 import phoneBanner from "../../../../assets/phone-banner.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { registerAction } from "../../../../app/redux/auth/action";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const { registerAuth } = useSelector((state) => state.auth);
@@ -26,10 +27,13 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const onsubmit = (data) => {
     let { username, password, email } = data;
     dispatch(registerAction({ username, password, email }));
     alert("register success");
+    navigate("/login");
   };
 
   console.log(registerAuth);

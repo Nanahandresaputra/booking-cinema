@@ -86,6 +86,7 @@ const Seat = () => {
     );
     navigate("/");
     window.location.reload(true);
+    alert("Booking berhasil");
   };
 
   return (

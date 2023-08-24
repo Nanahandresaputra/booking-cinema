@@ -41,6 +41,7 @@ const Login = () => {
       sessionStorage.setItem("auth", access_token);
       sessionStorage.setItem("role", role);
       role === "Admin" ? navigate("/admin") : navigate("/");
+      alert("login success");
     }
   };
 
