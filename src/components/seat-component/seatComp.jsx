@@ -1,28 +1,18 @@
-// import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSeat } from "../../app/redux/seat/action";
-import { useState } from "react";
 
 const SeatComp = ({ seat, seatsData, label }) => {
   const dispatch = useDispatch();
   const { getBooking } = useSelector((state) => state.movies);
 
-  // const [test, setTest] = useState({});
-
-  let bookedSeat = getBooking?.result?.Seats[0];
+  let bookedSeat = getBooking?.result?.Seats[0] || {};
   const handleBooking = (idx) => {
-    // for (const [key, value] of Object.entries(getBooking)) {
-    //   console.log(`${key}: ${value}`);
-    // }
-
-    console.log(bookedSeat.idx);
     dispatch(addSeat(idx));
   };
 
-  // console.log(bookedSeat);
-
   const btnStyles = {
     available: "btn btn-success btn-sm",
+    selected: "btn btn-info btn-sm",
     booked:
       "px-3 h-8 text-white bg-gray-300 rounded-lg focus:outline-none inline-flex flex-wrap items-center justify-center gap-2 font-semibold text-sm",
   };
@@ -36,10 +26,15 @@ const SeatComp = ({ seat, seatsData, label }) => {
             <button
               type="button"
               className={`text-white ${
-                seatsData === index ? btnStyles.booked : btnStyles.available
+                seatsData?.find((data) => data === index)
+                  ? btnStyles.selected
+                  : bookedSeat[index] === 1
+                  ? btnStyles.booked
+                  : btnStyles.available
               } w-7 md:w-full`}
               key={i}
-              onClick={() => handleBooking(index)}>
+              onClick={() => handleBooking(index)}
+              disabled={bookedSeat[index] === 1 ? true : false}>
               {index}
             </button>
           ))}

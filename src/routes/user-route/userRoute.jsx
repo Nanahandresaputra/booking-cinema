@@ -5,6 +5,7 @@ import Login from "../../pages/user/auth/login/login";
 import Register from "../../pages/user/auth/register/register";
 import Seat from "../../pages/user/seat-studio/seat";
 import PrivateRouterUser from "./privateRouter";
+import Invoice from "../../pages/user/invoice/invoice";
 
 const UserRoute = () => {
   return (
@@ -23,6 +24,14 @@ const UserRoute = () => {
         element={
           <PrivateRouterUser>
             <Seat />
+          </PrivateRouterUser>
+        }
+      />
+      <Route
+        path="/invoice"
+        element={
+          <PrivateRouterUser>
+            <Invoice />
           </PrivateRouterUser>
         }
       />

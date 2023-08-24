@@ -4,8 +4,9 @@ import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getShowTime } from "../../app/redux/movies/action";
+import moment from "moment";
 
-const Accordion = ({ studioName, movieId, time }) => {
+const Accordion = ({ studioName, movieId, time, movieDate }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => {
@@ -18,6 +19,33 @@ const Accordion = ({ studioName, movieId, time }) => {
     dispatch(getShowTime(timeMovie));
     navigate(`seat/${movieId}`);
   };
+
+  let btnStyles = {
+    active: "btn rounded-full btn-error text-white btn-sm md:btn-md",
+    disabled:
+      "px-4 h-12 text-white bg-gray-300 rounded-full focus:outline-none inline-flex flex-wrap items-center justify-center gap-2 font-semibold text-sm",
+  };
+
+  let session1 =
+    moment().format("HH") >= moment("10", "hh").hours() &&
+    moment(movieDate).format("YYYY/MM/DD") <
+      moment().add(1, "days").format("YYYY/MM/DD");
+  let session2 =
+    moment().format("HH") >= moment("13", "HH").hours() &&
+    moment(movieDate).format("YYYY/MM/DD") <
+      moment().add(1, "days").format("YYYY/MM/DD");
+  let session3 =
+    moment().format("HH") >= moment("15", "hh").hours() &&
+    moment(movieDate).format("YYYY/MM/DD") <
+      moment().add(1, "days").format("YYYY/MM/DD");
+
+  let validateTime = {
+    "10.00-12.00": session1,
+    "13.00-15.00": session2,
+    "16.00-18.00": session3,
+  };
+
+  // console.log(moment().format("HH") >== moment("13", "HH").hours());
 
   return (
     <section className="border bg-gray-900 rounded-xl">
@@ -41,8 +69,13 @@ const Accordion = ({ studioName, movieId, time }) => {
           {time?.map((index, i) => (
             <button
               key={i}
-              className="btn rounded-full btn-error text-white btn-sm md:btn-md"
-              onClick={() => handleTime(index)}>
+              className={
+                validateTime[index] === true
+                  ? btnStyles.disabled
+                  : btnStyles.active
+              }
+              onClick={() => handleTime(index)}
+              disabled={validateTime[index] === true ? true : false}>
               {index}
             </button>
           ))}

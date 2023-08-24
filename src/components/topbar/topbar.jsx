@@ -33,7 +33,9 @@ const Topbar = () => {
           </summary>
           <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52 text-black">
             <li>
-              <Link>List Film</Link>
+              <Link to={role === "Admin" ? "/admin" : "/invoice"}>
+                {role === "Admin" ? "Dashboard" : "My Ticket"}
+              </Link>
             </li>
             <li className={token ? "hidden" : "block"}>
               <Link to="login">Login</Link>
@@ -54,8 +56,10 @@ const Topbar = () => {
             onClick={() => window.scroll({ top: 0 })}>
             Home
           </Link>
-          <Link className="btn btn-ghost normal-case text-xl">
-            {role === "Admin" ? "Dashboard" : "List Film"}
+          <Link
+            to={role === "Admin" ? "/admin" : "/invoice"}
+            className="btn btn-ghost normal-case text-xl">
+            {role === "Admin" ? "Dashboard" : "My Ticket"}
           </Link>
 
           <details className="dropdown">

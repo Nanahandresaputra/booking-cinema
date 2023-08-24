@@ -2,7 +2,7 @@ import Accordion from "../../../components/detail-film/accordion";
 import popcorn from "../../../assets/popcorn.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   getDate,
   getListMovies,
@@ -28,10 +28,14 @@ const DetailFIlm = () => {
 
   const { dateMovie } = useSelector((state) => state.movies);
 
+  const [movieDate, setMovieDate] = useState(moment().format("YYYY/MM/DD"));
+
   const handleClick = (idx) => {
     dispatch(getDate(idx));
+    setMovieDate(idx);
   };
-  // console.log(listStudio);
+
+  console.log(movieDate);
   return (
     <section className="mx-5 space-y-8 lg:space-y-12 max-w-[1536px] md:w-10/12 lg:w-9/12">
       <div className="flex flex-col items-center justify-around lg:justify-start lg:space-x-12 lg:flex-row">
@@ -85,6 +89,7 @@ const DetailFIlm = () => {
         </div>
         <Accordion
           studioName={listStudio?.result?.name}
+          movieDate={movieDate}
           time={listStudio?.showTime}
           movieId={id}
         />

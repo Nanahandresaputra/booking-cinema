@@ -29,11 +29,6 @@ export const listStudioApi = async (params) => {
 };
 
 export const authLoginApi = async ({ email, password }) => {
-  // const auth = await axios.post(`${apiConfig.baseUl}/${apiConfig.login}`, {
-  //   email,
-  //   password,
-  // });
-  // return auth;
   return axios
     .post(`${apiConfig.baseUl}/${apiConfig.login}`, {
       email,
@@ -49,4 +44,37 @@ export const registerApi = async ({ email, password, username }) => {
     { username, email, password }
   );
   return register;
+};
+
+export const addBookingApi = async ({
+  movie,
+  seat,
+  date,
+  studio,
+  showTime,
+}) => {
+  let token = sessionStorage.getItem("auth");
+  const booking = await axios.post(
+    `${apiConfig.baseUl}/${apiConfig.booking}`,
+    { movie, seat, date, studio, showTime },
+    {
+      headers: {
+        access_token: token,
+      },
+    }
+  );
+  return booking;
+};
+
+export const bookingListApi = async () => {
+  let token = sessionStorage.getItem("auth");
+  const listBoking = await axios.get(
+    `${apiConfig.baseUl}/${apiConfig.invoice}`,
+    {
+      headers: {
+        access_token: token,
+      },
+    }
+  );
+  return listBoking;
 };
