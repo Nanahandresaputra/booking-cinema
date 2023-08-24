@@ -35,7 +35,6 @@ const DetailFIlm = () => {
     setMovieDate(idx);
   };
 
-  console.log(movieDate);
   return (
     <section className="mx-5 space-y-8 lg:space-y-12 max-w-[1536px] md:w-10/12 lg:w-9/12">
       <div className="flex flex-col items-center justify-around lg:justify-start lg:space-x-12 lg:flex-row">

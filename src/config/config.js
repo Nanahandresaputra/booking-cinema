@@ -6,4 +6,5 @@ export const apiConfig = {
   listStudio: "client/list-studio",
   booking: "client/booking",
   invoice: "client/booking-list",
+  addMovie: "admin/add-movie",
 };

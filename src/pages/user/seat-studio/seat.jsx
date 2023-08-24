@@ -101,6 +101,10 @@ const Seat = () => {
             <p className="text-white text-lg">Available</p>
           </div>
           <div className="flex items-center space-x-3">
+            <div className="h-5 w-5 bg-blue-400 rounded-lg" />
+            <p className="text-white text-lg">Selected</p>
+          </div>
+          <div className="flex items-center space-x-3">
             <div className="h-5 w-5 bg-gray-400 rounded-lg" />
             <p className="text-white text-lg">Booked</p>
           </div>

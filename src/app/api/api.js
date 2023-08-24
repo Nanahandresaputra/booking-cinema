@@ -78,3 +78,25 @@ export const bookingListApi = async () => {
   );
   return listBoking;
 };
+
+export const addMoviesApi = async ({
+  id,
+  title,
+  description,
+  director,
+  genre,
+  image,
+  studioId,
+}) => {
+  let token = sessionStorage.getItem("auth");
+  const movies = await axios.post(
+    `${apiConfig.baseUl}/${apiConfig.addMovie}`,
+    { title, description, director, genre, image, studioId, id },
+    {
+      headers: {
+        access_token: token,
+      },
+    }
+  );
+  return movies;
+};

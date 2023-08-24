@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import movies from "../../data-dummy/movies";
 
-const Table = () => {
+const Table = ({ listMovies }) => {
   const navigate = useNavigate();
 
   return (
@@ -15,21 +14,21 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {movies?.map((index, i) => (
+          {listMovies?.map((index, i) => (
             <tr key={i}>
               <td className=" flex items-center space-x-3 ">
                 <img
-                  src={index.image}
+                  src={`data:image/jpeg;base64,${index.image}`}
                   alt={index.title}
-                  className="h-16 md:h-20 lg:h-32"
+                  className="w-10 h-16 md:w-14 md:h-20 lg:w-24 lg:h-32 object-cover"
                 />
                 <span className="truncate w-20 md:w-auto">{index.title}</span>
               </td>
-              <td>Studio XXI</td>
+              <td>Studio {index.StudioId}</td>
               <td>
                 <button
                   className="btn btn-info  btn-xs md:btn-sm text-white"
-                  onClick={() => navigate("detail-film")}>
+                  onClick={() => navigate(`detail-film/${index.id}`)}>
                   Detail
                 </button>
               </td>

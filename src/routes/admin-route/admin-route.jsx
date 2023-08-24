@@ -25,7 +25,7 @@ const AdminRoute = () => {
         }
       />
       <Route
-        path="/admin/detail-film"
+        path="/admin/detail-film/:id"
         element={
           <PrivateAdmin>
             <DetailAdmin />
@@ -33,7 +33,7 @@ const AdminRoute = () => {
         }
       />
       <Route
-        path="/admin/detail-film/update-data"
+        path="/admin/detail-film/:id/update-data/:id"
         element={
           <PrivateAdmin>
             <UpdateData />

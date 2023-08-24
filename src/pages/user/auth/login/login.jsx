@@ -30,7 +30,6 @@ const Login = () => {
 
   const onsubmit = async (formData) => {
     const { data } = await authLoginApi(formData);
-    console.log(!data ? "salah" : data.access_token);
     if (!data) {
       setError("password", {
         type: "invalidCredential",
