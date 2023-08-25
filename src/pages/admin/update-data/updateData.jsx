@@ -9,6 +9,7 @@ import { getListMovies } from "../../../app/redux/movies/action";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addMoviesApi } from "../../../app/api/api";
+import Swal from "sweetalert2";
 const UpdateData = () => {
   const validationSchema = yup.object().shape({
     title: yup.string().required("Masukan judul film"),
@@ -42,6 +43,8 @@ const UpdateData = () => {
 
   let getDetail = listMovies?.find((data) => data.id === parseInt(id));
 
+  console.log(getDetail.Studio.status);
+
   const onsubmit = (data) => {
     let { title, description, director, genre, studioId, image, id } = data;
 
@@ -59,9 +62,24 @@ const UpdateData = () => {
         id,
         image: reader.result.replace(/^data:image\/[a-z]+;base64,/, ""),
       });
-      alert("Berhasil update data");
-      navigate("/admin");
-      window.location.reload(true);
+
+      Swal.fire({
+        title: "Apakah perubahan akan disimpan?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Simpan perubahan",
+        denyButtonText: `Jangan simpan perubahan`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Data movie berhasil diupdate!", "", "success");
+          navigate("/admin");
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 1500);
+        } else if (result.isDenied) {
+          Swal.fire("Perubahan tidak disimpan", "", "info");
+        }
+      });
     };
   };
 

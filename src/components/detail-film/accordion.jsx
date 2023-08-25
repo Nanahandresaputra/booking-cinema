@@ -35,7 +35,7 @@ const Accordion = ({ studioName, movieId, time, movieDate }) => {
     moment(movieDate).format("YYYY/MM/DD") <
       moment().add(1, "days").format("YYYY/MM/DD");
   let session3 =
-    moment().format("HH") >= moment("15", "hh").hours() &&
+    moment().format("HH") >= moment("16", "HH").hours() &&
     moment(movieDate).format("YYYY/MM/DD") <
       moment().add(1, "days").format("YYYY/MM/DD");
 

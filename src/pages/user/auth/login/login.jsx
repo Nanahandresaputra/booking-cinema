@@ -7,11 +7,12 @@ import { useDispatch } from "react-redux";
 import { authAction } from "../../../../app/redux/auth/action";
 import { useNavigate } from "react-router-dom";
 import { authLoginApi } from "../../../../app/api/api";
+import Swal from "sweetalert2";
 const Login = () => {
   const validationSchema = yup.object().shape({
     email: yup
       .string()
-      .email()
+      .email("masukan email yang valid")
       .matches(/@[^.]*\./, "masukan email yang valid")
       .required("Masukan email"),
     password: yup.string().required("Masukan password"),
@@ -41,7 +42,13 @@ const Login = () => {
       sessionStorage.setItem("auth", access_token);
       sessionStorage.setItem("role", role);
       role === "Admin" ? navigate("/admin") : navigate("/");
-      alert("login success");
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        text: "login berhasil",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 

@@ -6,6 +6,7 @@ import InputTextArea from "../../../components/input-form/inputTextArea";
 import InputFileImage from "../../../components/input-form/inputFileImage";
 import { addMoviesApi } from "../../../app/api/api";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 const AddData = () => {
   const validationSchema = yup.object().shape({
     title: yup.string().required("Masukan judul film"),
@@ -21,6 +22,10 @@ const AddData = () => {
       .test("required", "masukan foto", (file) => {
         return file.length;
       })
+      // .test("fileSize", "The file is too large", (value) => {
+      //   if (!value.length) return true;
+      //   return value[0].size <= 20000;
+      // })
       .test("type", "hanya masukan gambar", (file) => {
         let typeImage = ["image/png", "image/jpg", "image/jpeg"];
         if (file.length > 0) {
@@ -40,22 +45,42 @@ const AddData = () => {
   const onsubmit = (data) => {
     let { title, description, director, genre, studioId, image } = data;
 
-    const reader = new FileReader();
+    Swal.fire({
+      title: "Tambahkan Movie?",
+      text: "Movie akan ditambahkan ke dalam list movie!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Tambahkan!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          "Berhasil!",
+          "Movie berhasil ditambahkan ke daftar list",
+          "success"
+        );
 
-    reader.readAsDataURL(image[0]);
+        const reader = new FileReader();
 
-    reader.onload = () => {
-      addMoviesApi({
-        title,
-        description,
-        studioId,
-        genre,
-        director,
-        image: reader.result.replace(/^data:image\/[a-z]+;base64,/, ""),
-      });
-      alert("Berhasil Menambahkan Data");
-      navigate("/admin");
-    };
+        reader.readAsDataURL(image[0]);
+
+        reader.onload = () => {
+          addMoviesApi({
+            title,
+            description,
+            studioId,
+            genre,
+            director,
+            image: reader.result.replace(/^data:image\/[a-z]+;base64,/, ""),
+          });
+          navigate("/admin");
+          // setTimeout(() => {
+          //   window.location.reload(true), 1300;
+          // });
+        };
+      }
+    });
   };
 
   return (

@@ -4,6 +4,7 @@ import DetailAdmin from "../../pages/admin/detail-film-admin/detailAdmin";
 import AddData from "../../pages/admin/add-data/add-data";
 import UpdateData from "../../pages/admin/update-data/updateData";
 import PrivateAdmin from "./private-admin";
+import Summary from "../../pages/admin/summary/summary";
 
 const AdminRoute = () => {
   return (
@@ -37,6 +38,14 @@ const AdminRoute = () => {
         element={
           <PrivateAdmin>
             <UpdateData />
+          </PrivateAdmin>
+        }
+      />
+      <Route
+        path="/admin/summary"
+        element={
+          <PrivateAdmin>
+            <Summary />
           </PrivateAdmin>
         }
       />

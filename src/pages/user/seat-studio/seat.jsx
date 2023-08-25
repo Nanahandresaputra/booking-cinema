@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import { addBookingMovie } from "../../../app/redux/movies/action";
 import { addBookingAction } from "../../../app/redux/seat/action";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 const Seat = () => {
   let seatStudio1 = [
     {
@@ -75,19 +76,45 @@ const Seat = () => {
 
   const navigate = useNavigate();
   const handleBookings = () => {
-    dispatch(
-      addBookingAction({
-        movie: listStudio?.result?.Movies[0].title,
-        showTime: timeInfo,
-        date: dateMovie,
-        studio: getStudioId,
-        seat: seatsData.toString(),
-      })
-    );
-    navigate("/");
-    window.location.reload(true);
-    alert("Booking berhasil");
+    Swal.fire({
+      title: "Konfirmasi Booking",
+      text: "Klik Booking Tiket Untuk melanjutkan!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Booking Tiket",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          "Berhasil!",
+          "Kursi Berhail di Booking, Terimakasih.",
+          "success"
+        );
+        dispatch(
+          addBookingAction({
+            movie: listStudio?.result?.Movies[0].title,
+            showTime: timeInfo,
+            date: dateMovie,
+            studio: getStudioId,
+            seat: seatsData.toString(),
+          })
+        );
+        navigate("/invoice");
+
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 1500);
+      }
+    });
   };
+
+  const formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  });
+
+  console.log(seatsData[0]);
 
   return (
     <section className="flex flex-col space-y-10 w-full max-w-[1563px]">
@@ -145,6 +172,10 @@ const Seat = () => {
         <div className="flex justify-between items-center border px-3 bg-gray-900 rounded-lg py-3 w-9/12 text-white text-sm md:text-lg">
           <p>Maximal Booking: 5</p>
           <p>Jumlah: {seatsData.length}</p>
+          <p>Harga: {formatter.format(seatsData.length * 20000)}</p>
+        </div>
+        <div className="flex justify-between items-center border px-3 bg-gray-900 rounded-lg py-3 w-9/12 text-white text-sm md:text-lg">
+          <p>Noror Kursi: {seatsData.sort().toString()}</p>{" "}
         </div>
         <button
           type="button"

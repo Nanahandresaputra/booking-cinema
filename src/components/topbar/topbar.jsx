@@ -62,6 +62,14 @@ const Topbar = () => {
             {role === "Admin" ? "Dashboard" : "My Ticket"}
           </Link>
 
+          <Link
+            to="/admin/summary"
+            className={`${
+              role === "Admin" ? "inline-flex" : "hidden"
+            } btn btn-ghost normal-case text-xl`}>
+            Summary
+          </Link>
+
           <details className="dropdown">
             <summary className="m-1 btn btn-ghost">
               <FaUserCircle className="text-3xl" />

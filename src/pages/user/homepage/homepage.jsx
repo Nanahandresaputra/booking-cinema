@@ -37,7 +37,7 @@ const Homepage = () => {
 
       <div className="flex flex-col items-center w-full space-y-8 lg:space-y-14">
         <h1 className="text-white text-2xl font-semibold">Tayang Hari ini</h1>
-        <div className="flex flex-wrap gap-3 md:gap-6 lg:gap-8 lg:gap-y-20 lg:mx-10 xl:mx-0  justify-start">
+        <div className="flex flex-wrap gap-3 md:gap-6 lg:gap-y-20 md:w-11/12 xl:w-full xl:ps-10 2xl:ps-0 justify-center md:justify-start">
           {moviesActive.map((index, i) => (
             <CardFilm key={i} movies={index} status="active" />
           ))}
@@ -46,7 +46,7 @@ const Homepage = () => {
 
       <div className="flex flex-col items-center w-full space-y-8 lg:space-y-14">
         <h1 className="text-white text-2xl font-semibold">Coming Soon</h1>
-        <div className="flex flex-wrap gap-3 md:gap-6 lg:gap-8 lg:gap-y-20 lg:mx-10 xl:mx-0">
+        <div className="flex flex-wrap gap-3 md:gap-6 lg:gap-y-20 md:w-11/12 xl:w-full  xl:ps-10 2xl:ps-0 justify-center md:justify-star">
           {moviesSoon.map((index, i) => (
             <CardFilm key={i} movies={index} status="active" />
           ))}

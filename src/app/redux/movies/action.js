@@ -1,5 +1,5 @@
 import moment from "moment";
-import { listMoviesApi, listStudioApi } from "../../api/api";
+import { listMoviesApi, listStudioApi, summaryApi } from "../../api/api";
 import {
   GET_BOOKING,
   GET_DATE,
@@ -7,6 +7,7 @@ import {
   GET_SHOWTIME,
   GET_STUDIO_ID,
   GET_STUIDO,
+  GET_SUMMARY,
 } from "./constant";
 
 export const getListMovies = () => {
@@ -82,6 +83,17 @@ export const addBookingMovie = () => {
     listStudioApi(params).then((res) =>
       dispatch({
         type: GET_BOOKING,
+        payload: res.data,
+      })
+    );
+  };
+};
+
+export const summaryAction = () => {
+  return (dispatch) => {
+    summaryApi().then((res) =>
+      dispatch({
+        type: GET_SUMMARY,
         payload: res.data,
       })
     );

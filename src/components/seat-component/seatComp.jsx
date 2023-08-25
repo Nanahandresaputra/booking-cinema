@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addSeat } from "../../app/redux/seat/action";
+import Swal from "sweetalert2";
 
 const SeatComp = ({ seat, seatsData, label }) => {
   const dispatch = useDispatch();
@@ -7,7 +8,15 @@ const SeatComp = ({ seat, seatsData, label }) => {
 
   let bookedSeat = getBooking?.result?.Seats[0] || {};
   const handleBooking = (idx) => {
-    dispatch(addSeat(idx));
+    if (seatsData.length > 4) {
+      Swal.fire({
+        icon: "error",
+        title: "Maximal 5",
+        text: "Maximal boking kursi tidak boleh lebih dari 5!",
+      });
+    }
+
+    return dispatch(addSeat(idx));
   };
 
   const btnStyles = {

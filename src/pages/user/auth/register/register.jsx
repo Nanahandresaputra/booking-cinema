@@ -3,40 +3,54 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputText from "../../../../components/input-form/inputText";
 import phoneBanner from "../../../../assets/phone-banner.jpg";
-import { useDispatch, useSelector } from "react-redux";
-import { registerAction } from "../../../../app/redux/auth/action";
+import { registerApi } from "../../../../app/api/api";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Register = () => {
-  const { registerAuth } = useSelector((state) => state.auth);
   const validationSchema = yup.object().shape({
     username: yup.string().required("Masukan username"),
     email: yup
       .string()
-      .email()
+      .email("masukan email yang valid")
       .matches(/@[^.]*\./, "masukan email yang valid")
       .required("Masukan email"),
-    password: yup.string().required("Masukan password"),
+    password: yup
+      .string()
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+        "Minimal delapan karakter, setidaknya satu huruf besar, satu huruf kecil, satu angka"
+      )
+      .required("Masukan password"),
   });
 
   const {
     register,
     formState: { errors },
     handleSubmit,
+    setError,
   } = useForm({ resolver: yupResolver(validationSchema) });
-
-  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  const onsubmit = (data) => {
-    let { username, password, email } = data;
-    dispatch(registerAction({ username, password, email }));
-    alert("register success");
-    navigate("/login");
+  const onsubmit = async (formData) => {
+    const { data } = await registerApi(formData);
+    if (!data) {
+      setError("email", {
+        type: "invalidCredentials",
+        message: "Email sudah terdaftar",
+      });
+    } else {
+      Swal.fire({
+        icon: "success",
+        text: "Berhasil sudah terdaftar silakan login untuk booking tiket",
+        showConfirmButton: false,
+        timer: 2500,
+      });
+      navigate("/login");
+    }
   };
 
-  console.log(registerAuth);
   return (
     <section className="w-screen lg:border grid grid-cols-1 items-center lg:grid-cols-2 lg:w-[900px] h-[63vh] md:h-[75vh] lg:h-[65vh] max-w-[1536px] mt-5 lg:my-0">
       <img
@@ -47,7 +61,10 @@ const Register = () => {
 
       <div className="flex flex-col items-center justify-center">
         <h1 className="font-semibold text-white text-xl">Register</h1>
-        <form onSubmit={handleSubmit(onsubmit)} className="space-y-5">
+        <form
+          onSubmit={handleSubmit(onsubmit)}
+          className="space-y-5
+       w-auto mx-3 lg:mx-0 lg:w-96">
           <InputText
             nama="username"
             type="text"
@@ -57,10 +74,10 @@ const Register = () => {
           />
           <InputText
             nama="email"
-            type="email"
+            type="text"
             register={register}
             errMessage={errors.email?.message}
-            errStyle={errors.username ? "text-red-500" : "hidden"}
+            errStyle={errors.email ? "text-red-500" : "hidden"}
           />
           <InputText
             nama="password"

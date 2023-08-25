@@ -10,6 +10,9 @@ import {
   getStudiooId,
 } from "../../../app/redux/movies/action";
 import moment from "moment";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const DetailFIlm = () => {
   const { listStudio, listMovies } = useSelector((state) => state.movies);
@@ -26,12 +29,13 @@ const DetailFIlm = () => {
     (data) => data?.title === listStudio.result?.Movies[0].title
   );
 
-  const { dateMovie } = useSelector((state) => state.movies);
+  // const { dateMovie } = useSelector((state) => state.movies);
 
-  const [movieDate, setMovieDate] = useState(moment().format("YYYY/MM/DD"));
+  const [movieDate, setMovieDate] = useState(new Date());
 
   const handleClick = (idx) => {
-    dispatch(getDate(idx));
+    let date = moment(idx).format("YYYY/MM/DD");
+    dispatch(getDate(date));
     setMovieDate(idx);
   };
 
@@ -41,7 +45,7 @@ const DetailFIlm = () => {
         <div className="flex flex-col items-center space-y-8 w-full">
           <img
             src={`data:image/jpeg;base64,${dataId?.image}`}
-            className="w-60 md:w-full mt-10 lg:mt-0 max-h-80"
+            className="w-60 md:w-full mt-10 lg:mt-0 xl:w-9/12 max-h-80"
           />
           <h1 className="text-white font-semibold text-lg md:text-2xl lg:hidden">
             {listStudio?.result?.Movies[0].title}
@@ -74,7 +78,15 @@ const DetailFIlm = () => {
             <h1 className="text-white font-semibold text-lg md:text-xl">
               Tiket Available,
             </h1>
-            {listStudio.date?.map((index, i) => (
+
+            <DatePicker
+              selected={movieDate}
+              minDate={new Date()}
+              maxDate={new Date("08-31-2023")}
+              onChange={(date) => handleClick(date)}
+            />
+
+            {/* {listStudio.date?.map((index, i) => (
               <p
                 key={i}
                 className={`text-white font-semibold text-lg p-2 rounded-lg cursor-pointer  md:text-xl ${
@@ -83,7 +95,7 @@ const DetailFIlm = () => {
                 onClick={() => handleClick(index)}>
                 {index === moment().format("YYYY/MM/DD") ? "today" : index}
               </p>
-            ))}
+            ))} */}
           </div>
         </div>
         <Accordion

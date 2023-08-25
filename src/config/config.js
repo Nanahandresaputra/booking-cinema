@@ -7,4 +7,5 @@ export const apiConfig = {
   booking: "client/booking",
   invoice: "client/booking-list",
   addMovie: "admin/add-movie",
+  summary: "admin/list-summary",
 };

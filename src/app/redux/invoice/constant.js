@@ -1,0 +1,2 @@
+export const GET_INVOICE_CODE = "GET_INVOICE_CODE";
+export const GET_INVOICE_SEAT = "GET_INVOICE_SEAT";

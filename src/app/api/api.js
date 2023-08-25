@@ -39,11 +39,15 @@ export const authLoginApi = async ({ email, password }) => {
 };
 
 export const registerApi = async ({ email, password, username }) => {
-  const register = await axios.post(
-    `${apiConfig.baseUl}/${apiConfig.register}`,
-    { username, email, password }
-  );
-  return register;
+  return axios
+    .post(`${apiConfig.baseUl}/${apiConfig.register}`, {
+      username,
+      email,
+      password,
+    })
+    .then((res) => res)
+    .catch((err) => err);
+  // return register;
 };
 
 export const addBookingApi = async ({
@@ -99,4 +103,14 @@ export const addMoviesApi = async ({
     }
   );
   return movies;
+};
+
+export const summaryApi = async () => {
+  let token = sessionStorage.getItem("auth");
+  const summary = await axios.get(`${apiConfig.baseUl}/${apiConfig.summary}`, {
+    headers: {
+      access_token: token,
+    },
+  });
+  return summary;
 };

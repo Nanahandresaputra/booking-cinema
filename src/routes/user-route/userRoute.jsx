@@ -6,6 +6,7 @@ import Register from "../../pages/user/auth/register/register";
 import Seat from "../../pages/user/seat-studio/seat";
 import PrivateRouterUser from "./privateRouter";
 import Invoice from "../../pages/user/invoice/invoice";
+import InvoiceDetail from "../../pages/user/invoice/invoice-detail";
 
 const UserRoute = () => {
   return (
@@ -32,6 +33,14 @@ const UserRoute = () => {
         element={
           <PrivateRouterUser>
             <Invoice />
+          </PrivateRouterUser>
+        }
+      />
+      <Route
+        path="/invoice/detail-invoice/:id"
+        element={
+          <PrivateRouterUser>
+            <InvoiceDetail />
           </PrivateRouterUser>
         }
       />
