@@ -7,8 +7,6 @@ const Summary = () => {
   const { getSummary } = useSelector((state) => state.movies);
   const dispatch = useDispatch();
 
-  console.log(getSummary.summary);
-
   useEffect(() => {
     dispatch(summaryAction());
   }, [dispatch]);

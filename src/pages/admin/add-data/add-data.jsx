@@ -75,9 +75,9 @@ const AddData = () => {
             image: reader.result.replace(/^data:image\/[a-z]+;base64,/, ""),
           });
           navigate("/admin");
-          // setTimeout(() => {
-          //   window.location.reload(true), 1300;
-          // });
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 1400);
         };
       }
     });

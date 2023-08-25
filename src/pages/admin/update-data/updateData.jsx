@@ -43,8 +43,6 @@ const UpdateData = () => {
 
   let getDetail = listMovies?.find((data) => data.id === parseInt(id));
 
-  console.log(getDetail.Studio.status);
-
   const onsubmit = (data) => {
     let { title, description, director, genre, studioId, image, id } = data;
 
@@ -70,7 +68,13 @@ const UpdateData = () => {
         confirmButtonText: "Simpan perubahan",
         denyButtonText: `Jangan simpan perubahan`,
       }).then((result) => {
-        if (result.isConfirmed) {
+        if (getDetail.Studio.status === "active") {
+          Swal.fire({
+            icon: "error",
+            title: "Gagal.",
+            text: "Tidak bisa mengupdate movie yang statusnya aktif!",
+          });
+        } else if (result.isConfirmed) {
           Swal.fire("Data movie berhasil diupdate!", "", "success");
           navigate("/admin");
           setTimeout(() => {

@@ -74,7 +74,7 @@ const Topbar = () => {
             <summary className="m-1 btn btn-ghost">
               <FaUserCircle className="text-3xl" />
             </summary>
-            <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-40 text-black text-lg">
+            <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-40 text-black text-lg cursor-pointer">
               <li className={token ? "hidden" : "block"}>
                 <Link to="login">Login</Link>
               </li>
