@@ -37,13 +37,18 @@ const Topbar = () => {
                 {role === "Admin" ? "Dashboard" : "My Ticket"}
               </Link>
             </li>
+            <li className={role === "Admin" ? "block" : "hidden"}>
+              <Link to="/admin/summary">Summary</Link>
+            </li>
             <li className={token ? "hidden" : "block"}>
               <Link to="login">Login</Link>
             </li>
             <li className={token ? "hidden" : "block"}>
               <Link to="register">Register</Link>
             </li>
-            <li className={token ? "block" : "hidden"} onClick={handleLogout}>
+            <li
+              className={token ? "block ms-4" : "hidden"}
+              onClick={handleLogout}>
               Logout
             </li>
           </ul>

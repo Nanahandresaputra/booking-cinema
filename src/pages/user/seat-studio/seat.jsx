@@ -17,6 +17,8 @@ import { addBookingMovie } from "../../../app/redux/movies/action";
 import { addBookingAction } from "../../../app/redux/seat/action";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { formatter } from "../../../utils/utils";
+
 const Seat = () => {
   let seatStudio1 = [
     {
@@ -110,13 +112,6 @@ const Seat = () => {
     });
   };
 
-  const formatter = new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-  });
-
-  console.log(seatsData[0]);
-
   return (
     <section className="flex flex-col space-y-10 w-full max-w-[1563px]">
       <h1 className="text-white font-semibold text-2xl text-center">
@@ -173,7 +168,7 @@ const Seat = () => {
         <div className="flex justify-between items-center border px-3 bg-gray-900 rounded-lg py-3 w-9/12 text-white text-sm md:text-lg">
           <p>Maximal Booking: 5</p>
           <p>Jumlah: {seatsData.length}</p>
-          <p>Harga: {formatter.format(seatsData.length * 20000)}</p>
+          <p>Harga: {formatter.format(seatsData.length * 40000)}</p>
         </div>
         <div className="flex justify-between items-center border px-3 bg-gray-900 rounded-lg py-3 w-9/12 text-white text-sm md:text-lg">
           <p>Nomor Kursi: {seatsData.sort().toString()}</p>{" "}

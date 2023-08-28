@@ -13,6 +13,7 @@ import moment from "moment";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { formatter } from "../../../utils/utils";
 
 const DetailFIlm = () => {
   const { listStudio, listMovies } = useSelector((state) => state.movies);
@@ -67,6 +68,7 @@ const DetailFIlm = () => {
           <div className="text-white text-justify font-normal text-sm md:text-base hidden lg:block self-start">
             <p>Director: {listStudio?.result?.Movies[0].director}</p>
             <p>Genre: {listStudio?.result?.Movies[0].genre}</p>
+            <p>Harga: {formatter.format(40000)}</p>
           </div>
           <h2 className="md:text-xl">Sinopsis</h2>
           <p className="text-white text-justify font-normal text-base md:text-lg">
