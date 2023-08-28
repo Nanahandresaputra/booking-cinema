@@ -44,7 +44,7 @@ const UpdateData = () => {
   let getDetail = listMovies?.find((data) => data.id === parseInt(id));
 
   const onsubmit = (data) => {
-    let { title, description, director, genre, studioId, image, id } = data;
+    let { title, description, director, genre, image } = data;
 
     const reader = new FileReader();
 
@@ -54,7 +54,6 @@ const UpdateData = () => {
       addMoviesApi({
         title,
         description,
-        studioId,
         genre,
         director,
         id,
@@ -129,12 +128,6 @@ const UpdateData = () => {
           register={register}
           errMessage={errors.description?.message}
           errStyle={errors.description ? "text-red-500" : "hidden"}
-        />
-        <InputText
-          defaultValue={getDetail?.id}
-          nama="id"
-          type="text"
-          register={register}
         />
         <button className="btn btn-error bg-red-500 text-white w-full">
           Update Data

@@ -12,10 +12,6 @@ const AddData = () => {
     title: yup.string().required("Masukan judul film"),
     director: yup.string().required("Masukan nama director"),
     genre: yup.string().required("Masukan genre"),
-    studioId: yup
-      .number()
-      .typeError("Masukan angka  yang valid")
-      .required("Masukan angka  yang valid"),
     description: yup.string().required("Masukan deskripsi"),
     image: yup
       .mixed()
@@ -43,7 +39,7 @@ const AddData = () => {
   const navigate = useNavigate();
 
   const onsubmit = (data) => {
-    let { title, description, director, genre, studioId, image } = data;
+    let { title, description, director, genre, image } = data;
 
     Swal.fire({
       title: "Tambahkan Movie?",
@@ -69,7 +65,6 @@ const AddData = () => {
           addMoviesApi({
             title,
             description,
-            studioId,
             genre,
             director,
             image: reader.result.replace(/^data:image\/[a-z]+;base64,/, ""),
@@ -109,13 +104,6 @@ const AddData = () => {
           register={register}
           errMessage={errors.genre?.message}
           errStyle={errors.genre ? "text-red-500" : "hidden"}
-        />
-        <InputText
-          nama="studioId"
-          type="number"
-          register={register}
-          errMessage={errors.studioId?.message}
-          errStyle={errors.studioId ? "text-red-500" : "hidden"}
         />
         <InputFileImage
           nama="image"

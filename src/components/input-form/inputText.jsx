@@ -15,8 +15,8 @@ const InputText = ({
         type={type}
         defaultValue={defaultValue || ""}
         placeholder={`masukan ${nama}`}
-        className="input input-bordered 
-          border border-white bg-transparent text-white w-full"
+        className={`input input-bordered 
+          border border-white bg-transparent text-white w-full`}
         {...register(nama)}
       />
       <span className={errStyle || ""}>{errMessage || ""}</span>

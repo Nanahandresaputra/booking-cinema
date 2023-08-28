@@ -68,6 +68,7 @@ const Seat = () => {
   const { timeInfo, dateMovie, listStudio, getStudioId } = useSelector(
     (state) => state.movies
   );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -100,11 +101,11 @@ const Seat = () => {
             seat: seatsData.toString(),
           })
         );
-        navigate("/invoice");
+        navigate(`/invoice`);
 
         setTimeout(() => {
           window.location.reload(true);
-        }, 1500);
+        }, 2000);
       }
     });
   };
@@ -175,7 +176,7 @@ const Seat = () => {
           <p>Harga: {formatter.format(seatsData.length * 20000)}</p>
         </div>
         <div className="flex justify-between items-center border px-3 bg-gray-900 rounded-lg py-3 w-9/12 text-white text-sm md:text-lg">
-          <p>Noror Kursi: {seatsData.sort().toString()}</p>{" "}
+          <p>Nomor Kursi: {seatsData.sort().toString()}</p>{" "}
         </div>
         <button
           type="button"

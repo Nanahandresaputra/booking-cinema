@@ -39,6 +39,10 @@ const DetailFIlm = () => {
     setMovieDate(idx);
   };
 
+  localStorage.setItem("getDate", moment(movieDate).format("YYYY/MM/DD"));
+  localStorage.setItem("getMovieTitle", listStudio?.result?.Movies[0].title);
+  localStorage.setItem("getStudio", id);
+
   return (
     <section className="mx-5 space-y-8 lg:space-y-12 max-w-[1536px] md:w-10/12 lg:w-9/12">
       <div className="flex flex-col items-center justify-around lg:justify-start lg:space-x-12 lg:flex-row">
@@ -84,6 +88,8 @@ const DetailFIlm = () => {
               minDate={new Date()}
               maxDate={new Date("08-31-2023")}
               onChange={(date) => handleClick(date)}
+              className="input input-bordered 
+          border border-white bg-transparent text-white w-full cursor-pointer"
             />
 
             {/* {listStudio.date?.map((index, i) => (

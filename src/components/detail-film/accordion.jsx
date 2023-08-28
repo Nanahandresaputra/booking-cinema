@@ -16,6 +16,7 @@ const Accordion = ({ studioName, movieId, time, movieDate }) => {
   const dispatch = useDispatch();
 
   const handleTime = (timeMovie) => {
+    localStorage.setItem("getTime", timeMovie);
     dispatch(getShowTime(timeMovie));
     navigate(`seat/${movieId}`);
   };

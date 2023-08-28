@@ -76,9 +76,10 @@ export const getDate = (date) => {
 export const addBookingMovie = () => {
   return (dispatch, getState) => {
     let params = {
-      studio: getState().movies.getStudioId,
-      date: getState().movies.dateMovie,
-      showTime: getState().movies.timeInfo,
+      studio:
+        getState().movies.getStudioId || localStorage.getItem("getStudio"),
+      date: getState().movies.dateMovie || localStorage.getItem("getDate"),
+      showTime: getState().movies.timeInfo || localStorage.getItem("getTime"),
     };
     listStudioApi(params).then((res) =>
       dispatch({

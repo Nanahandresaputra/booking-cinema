@@ -19,12 +19,22 @@ const Invoice = () => {
   const navigate = useNavigate();
 
   const getInvoieDetail = ({ code, seat, url }) => {
+    localStorage.setItem("bookings", code);
     dispatch(getInvoiCode(code));
     dispatch(getInvoiCeSeat(seat));
     navigate(`detail-invoice/${url}`);
   };
 
   // console.log({ invoiceCode, invoiceSeat });
+
+  const filteredArray = listInvoice?.filter((obj, index, arr) => {
+    return (
+      arr.map((mapObj) => mapObj.bookingCode).indexOf(obj.bookingCode) === index
+    );
+  });
+
+  // console.log(filteredArray);
+
   return (
     <section
       className="w-full max-w-[1536px] space-y-12 md:space-y-20 flex flex-col items-center justify-center
@@ -32,11 +42,13 @@ const Invoice = () => {
       <p className="text-white text-xl font-semibold">
         Username: {listBooking.username}
       </p>
-      {listInvoice?.map((index, i) => (
+      {filteredArray?.map((index, i) => (
         <div key={i} className="border w-9/12  p-5 flex justify-between">
           <div className=" space-y-5 flex flex-col">
             <p className="text-white">Title: {index.title}</p>
-            <p className="text-white">Date: {index.date}</p>
+            <p className="text-white">
+              Date: {index.date} {index.showTime}
+            </p>
           </div>
           {/* <QRCode value={index.bookingCode} /> */}
           <button
