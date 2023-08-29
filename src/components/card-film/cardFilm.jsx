@@ -1,11 +1,23 @@
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const CardFilm = ({ movies }) => {
   const navigate = useNavigate();
 
+  const role = sessionStorage.getItem("role");
+
   const toDetail = (movieId) => {
-    navigate(`detail-film/${movieId}`);
-    window.scroll({ top: 0 });
+    if (role === "Admin") {
+      Swal.fire({
+        icon: "warning",
+        text: "Hanya User yang bisa melakukan booking tiket",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      navigate(`detail-film/${movieId}`);
+      window.scroll({ top: 0 });
+    }
   };
 
   return (
@@ -32,6 +44,14 @@ const CardFilm = ({ movies }) => {
       <div className="absolute hidden lg:flex flex-col items-center justify-center rounded-xl opacity-0 w-full bottom-0 h-1 group-hover:h-full group-hover:opacity-100 transition-all bg-black bg-opacity-60 space-y-6">
         <h1 className="text-white text-xl mx-5 text-center font-semibold">
           {movies.title}
+        </h1>
+        <h1
+          className={
+            movies.Studio.status === "active"
+              ? "hidden"
+              : "block  text-white text-xl mx-5 text-center font-semibold"
+          }>
+          COMING SOON{" "}
         </h1>
         <button
           type="button"

@@ -72,7 +72,7 @@ const AddData = () => {
           navigate("/admin");
           setTimeout(() => {
             window.location.reload(true);
-          }, 1400);
+          }, 1500);
         };
       }
     });

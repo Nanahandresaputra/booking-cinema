@@ -77,6 +77,8 @@ const Seat = () => {
     dispatch(addBookingMovie());
   }, [dispatch]);
 
+  // console.log(seatsData.sort());
+
   const navigate = useNavigate();
   const handleBookings = () => {
     Swal.fire({
@@ -113,8 +115,8 @@ const Seat = () => {
   };
 
   return (
-    <section className="flex flex-col space-y-10 w-full max-w-[1563px]">
-      <h1 className="text-white font-semibold text-2xl text-center">
+    <section className="flex flex-col items-center  space-y-10 w-full max-w-[1563px] overflow-x-auto">
+      <h1 className="text-white font-semibold text-2xl text-center ">
         Available Seat
       </h1>
 
@@ -142,7 +144,7 @@ const Seat = () => {
       </div>
 
       <div className="flex flex-col items-center w-full space-y-12">
-        <div className="w-10/12">
+        <div className="w-full md:w-10/12">
           {seatStudio1?.map((index, i) => (
             <SeatComp
               key={i}
@@ -152,7 +154,7 @@ const Seat = () => {
             />
           ))}
         </div>
-        <div className="w-10/12">
+        <div className="w-full md:w-10/12">
           {seatStudio2?.map((index, i) => (
             <SeatComp
               key={i}

@@ -18,8 +18,9 @@ const Register = () => {
     password: yup
       .string()
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-        "Minimal delapan karakter, setidaknya satu huruf besar, satu huruf kecil, satu angka"
+        // /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+        /^\S*(?=\S{6,})(?=\S*\d)(?=\S*[A-Z])(?=\S*[a-z])(?=\S*[!@#$%^&*? ])\S*$/,
+        "Minimal enam karakter, setidaknya satu huruf besar, satu huruf kecil, satu angka, satu karakter khusus"
       )
       .required("Masukan password"),
   });
