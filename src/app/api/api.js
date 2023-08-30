@@ -113,3 +113,16 @@ export const summaryApi = async () => {
   });
   return summary;
 };
+
+export const customersListApi = async () => {
+  let token = sessionStorage.getItem("auth");
+  const customers = await axios.get(
+    `${apiConfig.baseUl}/${apiConfig.customersList}`,
+    {
+      headers: {
+        access_token: token,
+      },
+    }
+  );
+  return customers;
+};

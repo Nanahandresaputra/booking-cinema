@@ -98,10 +98,12 @@ const Seat = () => {
         );
         dispatch(
           addBookingAction({
-            movie: listStudio?.result?.Movies[0].title,
-            showTime: timeInfo,
+            movie:
+              listStudio?.result?.Movies[0].title ||
+              localStorage.getItem("getMovieTitle"),
+            showTime: timeInfo || localStorage.getItem("getTime"),
             date: dateMovie,
-            studio: getStudioId,
+            studio: getStudioId || localStorage.getItem("getStudio"),
             seat: seatsData.toString(),
           })
         );
@@ -109,7 +111,7 @@ const Seat = () => {
 
         setTimeout(() => {
           window.location.reload(true);
-        }, 2000);
+        }, 1000);
       }
     });
   };

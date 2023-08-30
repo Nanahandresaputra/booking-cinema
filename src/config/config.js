@@ -8,4 +8,5 @@ export const apiConfig = {
   invoice: "client/booking-list",
   addMovie: "admin/add-movie",
   summary: "admin/list-summary",
+  customersList: "admin/list-customers",
 };

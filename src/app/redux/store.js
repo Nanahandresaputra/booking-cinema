@@ -4,6 +4,7 @@ import moviesReducer from "./movies/reducer";
 import { seatReducer } from "./seat/reducer";
 import authReducer from "./auth/reducer";
 import { invoiceReducer } from "./invoice/reducer";
+import customersReducer from "./customers/reducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   seat: seatReducer,
   auth: authReducer,
   invoice: invoiceReducer,
+  customers: customersReducer,
 });
 
 const store = createStore(

@@ -5,6 +5,7 @@ import AddData from "../../pages/admin/add-data/add-data";
 import UpdateData from "../../pages/admin/update-data/updateData";
 import PrivateAdmin from "./private-admin";
 import Summary from "../../pages/admin/summary/summary";
+import CustomersList from "../../pages/admin/customers-list/customers-list";
 
 const AdminRoute = () => {
   return (
@@ -46,6 +47,14 @@ const AdminRoute = () => {
         element={
           <PrivateAdmin>
             <Summary />
+          </PrivateAdmin>
+        }
+      />
+      <Route
+        path="/admin/customers-list"
+        element={
+          <PrivateAdmin>
+            <CustomersList />
           </PrivateAdmin>
         }
       />

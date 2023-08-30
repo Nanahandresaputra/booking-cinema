@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addSeat } from "../../app/redux/seat/action";
 import Swal from "sweetalert2";
-import { useState } from "react";
+// import { useState } from "react";
 
 const SeatComp = ({ seat, seatsData, label }) => {
   const dispatch = useDispatch();
@@ -11,17 +11,17 @@ const SeatComp = ({ seat, seatsData, label }) => {
 
   // const obj = seat.reduce((a, v) => ({ ...a, [v]: v }), {});
 
-  const [idxPlus, setIdxPlus] = useState("");
-  const [idxMin, setIdxMin] = useState("");
+  // const [idxPlus, setIdxPlus] = useState("");
+  // const [idxMin, setIdxMin] = useState("");
   // const [test, setTest] = useState("");
   // const [test, setTest] = useState("");
 
-  const handleBooking = ({ index, i }) => {
-    let indexMin = i - 2;
-    let indexPlus = i + 2;
+  const handleBooking = ({ index }) => {
+    // let indexMin = i - 2;
+    // let indexPlus = i + 2;
 
-    setIdxPlus(i + 2);
-    setIdxMin(i - 2);
+    // setIdxPlus(i + 2);
+    // setIdxMin(i - 2);
 
     if (seatsData.length > 4) {
       Swal.fire({
@@ -33,8 +33,6 @@ const SeatComp = ({ seat, seatsData, label }) => {
       dispatch(addSeat(index));
     }
   };
-
-  console.log(seat);
 
   const btnStyles = {
     available: "btn btn-success btn-sm",
@@ -54,21 +52,13 @@ const SeatComp = ({ seat, seatsData, label }) => {
               className={`text-white ${
                 seatsData?.find((data) => data === index)
                   ? btnStyles.selected
-                  : bookedSeat[index] === 1 ||
-                    seat[idxPlus] === index ||
-                    seat[idxMin] === index
+                  : bookedSeat[index] === 1
                   ? btnStyles.booked
                   : btnStyles.available
               } w-7 md:w-full`}
               key={i}
               onClick={() => handleBooking({ index, i })}
-              disabled={
-                bookedSeat[index] === 1 ||
-                seat[idxPlus] === index ||
-                seat[idxMin] === index
-                  ? true
-                  : false
-              }>
+              disabled={bookedSeat[index] === 1 ? true : false}>
               {index}
             </button>
           ))}
@@ -79,3 +69,7 @@ const SeatComp = ({ seat, seatsData, label }) => {
 };
 
 export default SeatComp;
+
+// ||
+//                 seat[idxPlus] === index ||
+//                 seat[idxMin] === index
