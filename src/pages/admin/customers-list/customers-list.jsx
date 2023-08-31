@@ -11,12 +11,11 @@ const CustomersList = () => {
     dispatch(customersListAction());
   }, [dispatch]);
 
-  // let arr = [];
-
-  // customersData.result?.map((index) => console.log(index.Movie.title));
-
   return (
-    <div>
+    <div className="space-y-12">
+      <h1 className="text-3xl text-white font-semibold text-center">
+        Jumlah Penonton Keseluruhan Perhari
+      </h1>
       <ChartCustomer result={customersData.result} />
     </div>
   );
