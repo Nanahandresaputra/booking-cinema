@@ -34,12 +34,15 @@ const ChartCustomer = ({ result }) => {
     "Penonton/Hari": val[i],
   }));
 
-  console.log(dailyData);
-
   // let map = group?.map((datas) => Object.values(datas));
 
   // let arr2 = group?.map((index) => index?.map((el) => el.Movie.title));
+  // let title = [].concat(...arr2);
+  // let fill = title?.filter(function (item, pos) {
+  //   return title?.indexOf(item) == pos;
+  // });
 
+  // console.log(fill);
   // let unniik = arr2?.map((datas) =>
   //   datas?.filter(function (item, pos) {
   //     return datas?.indexOf(item) == pos;
