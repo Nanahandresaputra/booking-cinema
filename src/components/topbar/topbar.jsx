@@ -40,6 +40,9 @@ const Topbar = () => {
             <li className={role === "Admin" ? "block" : "hidden"}>
               <Link to="/admin/summary">Summary</Link>
             </li>
+            <li className={role === "Admin" ? "block" : "hidden"}>
+              <Link to="/admin/customers-list">Customers List</Link>
+            </li>
             <li className={token ? "hidden" : "block"}>
               <Link to="login">Login</Link>
             </li>
@@ -73,6 +76,13 @@ const Topbar = () => {
               role === "Admin" ? "inline-flex" : "hidden"
             } btn btn-ghost normal-case text-xl`}>
             Summary
+          </Link>
+          <Link
+            to="/admin/customers-list"
+            className={`${
+              role === "Admin" ? "inline-flex" : "hidden"
+            } btn btn-ghost normal-case text-xl`}>
+            Customers List
           </Link>
 
           <details className="dropdown">
